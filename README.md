@@ -12,6 +12,8 @@ $ npm install
 
 ## Generate migrations
 
+You can replace "init" with a proper migration name of your choice
+
 ```bash
 $ npm run typeorm:makemigrations "init"
 ```
@@ -27,16 +29,6 @@ $ npm run typeorm:migrate
 ```bash
 $ npm run start:dev
 ```
-
-# Run with docker
-
-```bash
-$ docker-compose up build
-```
-
-# Accessing swagger documentation
-
-[http://localhost:3000/docs/](http://localhost:3000/docs/)
 
 ## Have a special need ?
 
