@@ -1,4 +1,11 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 import { QueryBus, CommandBus } from '@nestjs/cqrs';
 import { GetItemsQuery } from './queries/get-items.query';
 import { SaveItemCommand } from './commands/save-item.command';
@@ -11,8 +18,9 @@ export class ItemController {
   ) {}
 
   @Post()
+  @UsePipes(new ValidationPipe({ transform: true }))
   create(@Body() createItemDto: SaveItemCommand) {
-    this.commandBus.execute(createItemDto);
+    return this.commandBus.execute(createItemDto);
   }
 
   @Get()

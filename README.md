@@ -15,7 +15,7 @@ $ npm install
 You can replace "init" with a proper migration name of your choice
 
 ```bash
-$ npm run typeorm:makemigrations "init"
+$ npm run typeorm:makemigrations init
 ```
 
 ## Run migrations

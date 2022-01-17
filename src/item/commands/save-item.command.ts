@@ -11,8 +11,9 @@ export class SaveItemCommand {
 export class SaveItemHandler implements ICommandHandler<SaveItemCommand> {
   constructor(@InjectRepository(Item) private itemRepo: Repository<Item>) {}
   async execute(command: SaveItemCommand) {
-    const item = new Item();
-    item.title = command.title;
-    await this.itemRepo.insert(item);
+    const itemInput = new Item();
+    itemInput.title = command.title;
+    const item = this.itemRepo.create(itemInput);
+    await this.itemRepo.save(item);
   }
 }
