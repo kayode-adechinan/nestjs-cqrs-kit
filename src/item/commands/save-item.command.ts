@@ -2,8 +2,10 @@ import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { Item } from '../entities/item.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { IsNotEmpty } from 'class-validator';
 
 export class SaveItemCommand {
+  @IsNotEmpty()
   title: string;
 }
 
@@ -14,6 +16,6 @@ export class SaveItemHandler implements ICommandHandler<SaveItemCommand> {
     const itemInput = new Item();
     itemInput.title = command.title;
     const item = this.itemRepo.create(itemInput);
-    await this.itemRepo.save(item);
+    return await this.itemRepo.save(item);
   }
 }

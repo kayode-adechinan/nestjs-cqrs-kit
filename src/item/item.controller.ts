@@ -20,6 +20,7 @@ export class ItemController {
   @Post()
   @UsePipes(new ValidationPipe({ transform: true }))
   create(@Body() createItemDto: SaveItemCommand) {
+    console.log(createItemDto);
     return this.commandBus.execute(createItemDto);
   }
 
